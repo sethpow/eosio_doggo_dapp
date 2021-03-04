@@ -1,0 +1,42 @@
+Dog coins
+
+Coin “creation” account to dog3
+❯ cleos transfer doggo dog3 "50 DOGCOIN" "50 to dog3" -p doggo@active
+
+dog3 puts them into this smart contract
+❯ cleos transfer dog3 doggo2 "1 DOGCOIN" "1DC" -p dog3@active
+
+Now dog3 has 1 DC in this smart contract
+❯ cleos get table doggo2 dog3 balances
+
+{
+  "rows": [{
+      "funds": "1 DOGCOIN"
+    }
+  ],
+  "more": false,
+  "next_key": ""
+}
+
+=====================================
+
+❯ cleos get table doggo2 doggo balances
+{
+  "rows": [{
+      "funds": "1200 DOGCOIN"
+    }
+  ],
+  "more": false,
+  "next_key": ""
+}
+
+❯ cleos push action doggo2 insert '["doggo", "woofenstein", 99]' -p doggo@active
+
+{
+  "rows": [{
+      "funds": "1190 DOGCOIN"
+    }
+  ],
+  "more": false,
+  "next_key": ""
+}

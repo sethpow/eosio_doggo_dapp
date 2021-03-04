@@ -1,0 +1,12 @@
+all value transfers happen in eosio.token contract (eos tokens and custom tokens)
+
+if user wants to send $ to a MYCONTRACT account, send instructions to eosio.token, directing traffic to MYCONTRACT
+    - happens by MYCONTRACT listening for applicable transfers on eosio.token contract; MYCONTRACT then can act on those transfers
+
+    - working with  onNotify
+        - "listener" in MYCONTRACT that can be executed whenever some action happens in another contract
+
+
+create new table in MYCONTRACT to track balances of customers
+they need X amount of custom token/coin in MYCONTRACT to execute functions
+

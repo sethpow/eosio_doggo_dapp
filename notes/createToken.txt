@@ -1,0 +1,38 @@
+-I 
+    we want to include the 'include' folder
+
+cd into eosio.token folder
+
+compile
+    eosio-cpp -I include -abigen -o eosio.token.wasm ./src/eosio.token.cpp
+
+
+
+then create eosio.token account
+
+deploy to new account
+    cleos set contract eosio.token .
+    
+    (how filip did it)
+    cleos set contract eosio.token /Users/admin/Documents/eos-contracts/eosio.contracts/contracts/eosio.token ./eosio.token.wasm --abi eosio.token.abi -p eosio.token@active
+
+see if you have account
+    cleos get account eosio.token
+
+
+*****************************
+ready to create and issue token
+
+CREATE
+    cleos push action eosio.token create '["<token owner acc>", "<Max cap><symbol>"]' -p eosio.token@active
+    cleos push action eosio.token create '["seth", "10000 DOGCOIN"]' -p eosio.token@active
+
+ISSUE
+(assertion failure with message: tokens can only be issued to issuer account)
+    cleos push action eosio.token issue '["<recipient>", "<amount symbol>"]' -p recipient@active
+    cleos push action eosio.token issue '["seth", "100 DOGCOIN"]' -p seth@active
+
+
+Check balances
+    cleos get table eosio.token <issued to acc> <table name>
+    cleos get table eosio.token doggo accounts
